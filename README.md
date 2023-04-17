@@ -1,5 +1,6 @@
 <h1 align="center">Mind Your Body</h1>
 <h1 style="text-align:center; background-color:#D2B48C; padding:20px;">Mind Your Body</h1>
+<p align="center"><img src="https://img.shields.io/badge/Mind%20Your%20Body-#D2B48C?style=for-the-badge&logo=appveyor" alt="Mind Your Body"></p>
 
 
 <div style="display: flex; justify-content: center; align-items: center;"><img src="https://bellabeat.com/wp-content/uploads/2022/10/Leaf-Urban-Rose-Gold-Bellabeat-2.jpg" alt="Bellabeat Sleep" width="45" height="37.5" style="margin-right: 10px;"><h1 style="color: #d2b48c; font-size: 28px; font-weight: bold; margin: 0;">Mind Your Body</h1><img src="https://bellabeat.com/wp-content/uploads/2022/10/Leaf-Urban-Rose-Gold-Bellabeat-2.jpg" alt="Bellabeat Sleep" width="45" height="37.5" style="margin-left: 10px;"></div>
