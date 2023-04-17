@@ -1,3 +1,11 @@
+<div style="display: flex; justify-content: center; align-items: center; flex-wrap: nowrap;">
+    <img src="https://bellabeat.com/wp-content/uploads/2022/10/Leaf-Urban-Rose-Gold-Bellabeat-2.jpg" alt="Bellabeat Sleep" width="45" height="37.5" style="margin-right: 10px;">
+    <h1 style="color: #d2b48c; font-size: 28px; font-weight: bold; margin: 0; text-align: center;">Mind Your Body</h1>
+    <img src="https://bellabeat.com/wp-content/uploads/2022/10/Leaf-Urban-Rose-Gold-Bellabeat-2.jpg" alt="Bellabeat Sleep" width="45" height="37.5" style="margin-left: 10px;">
+</div>
+
+
+
 <div style="display: flex; justify-content: center; align-items: center;"><img src="https://bellabeat.com/wp-content/uploads/2022/10/Leaf-Urban-Rose-Gold-Bellabeat-2.jpg" alt="Bellabeat Sleep" width="45" height="37.5" style="margin-right: 10px;"><h1 style="color: #d2b48c; font-size: 28px; font-weight: bold; margin: 0;">Mind Your Body</h1><img src="https://bellabeat.com/wp-content/uploads/2022/10/Leaf-Urban-Rose-Gold-Bellabeat-2.jpg" alt="Bellabeat Sleep" width="45" height="37.5" style="margin-left: 10px;"></div>
 
 <div style="text-align: center;"><h3 style="color: #d2b48c;">How Bellabeat Helps Users Optimize Physical Activity and Sleep</h3></div>
