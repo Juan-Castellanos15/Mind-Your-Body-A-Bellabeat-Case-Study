@@ -4,19 +4,12 @@
 <hr style="border: none; height: 3px; background-color: #d2b48c;">
 
 ## Table of Contents 
-
-[<img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="introduction" width="30" height="30"> 1. Introduction](#introduction)
-
+[<img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="introduction" width="30" height="30"> 1. Introduction](#introduction) 
 [<img src="https://cdn-icons-png.flaticon.com/512/3782/3782284.png" alt="ask" width="30" height="30"> 2. Ask Phase](#ask) 
-
 [<img src="https://cdn-icons-png.flaticon.com/512/2644/2644445.png" alt="prepare" width="30" height="30"> 3. Prepare Phase](#prepare) 
-
-[<img src="https://cdn-icons-png.flaticon.com/512/2974/2974322.png" alt="process" width="30" height="30"> 4. Process Phase](#process)
-
+[<img src="https://cdn-icons-png.flaticon.com/512/2974/2974322.png" alt="process" width="30" height="30"> 4. Process Phase](#process) 
 [<img src="https://cdn-icons-png.flaticon.com/512/6471/6471650.png" alt="Analyze" width="30" height="30">  5. Analyze and Share Phase](#analyze--share) 
-
 [<img src="https://cdn-icons-png.flaticon.com/512/9196/9196093.png" alt="act" width="30" height="30"> 6. Act Phase](#act)
-
 <hr style="border: none; height: 3px; background-color: #d2b48c;">
 
 ##  [<img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="intro" width="40" height="40"> 1. Introduction](#introduction) 
@@ -60,7 +53,7 @@ The "FitBit Fitness Tracker Data" dataset is available on Kaggle under the CC0 P
 ### 3.2 Data Usage Rights</div>
 To ensure my rights to use this data and upon further investigation of the CC0 Public Domain license, it has been confirmed that the individual who shared this dataset has waived all rights to the work worldwide under copyright law. This means that the data can be freely copied, modified, distributed, or used for commercial purposes, without requiring any permission.
 
-### 3.3 Data Breakdown
+### 3.2 Data Breakdown
 There are a total of 18 datasets available in CSV file format. The majority of the datasets are structured in a long format, with a few containing over 2,483,658 observations. However, there are a few exceptions that are presented in a wide format with approximately 62 attributes. The table below provides a summary of each dataset and its characteristics:
 
 | Dataset Name | Structure Type | Description | Column Names | 
@@ -363,6 +356,8 @@ ggplot(activity_levels_percentage, mapping=aes(x="", y=percentage, fill=user_typ
   guides(fill = FALSE) +
   labs(title = "User Activity Level Category")
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232825901-04f96b49-05f8-454b-ad69-4d52419c6e40.png" alt="User Activity Level Category" width="450">
+
 After analyzing the results, it can be concluded that the distribution of users across the various activity level categories is fairly even, with each category representing between 21.2% and 27.3% of the total user population. However, a significant proportion of users fall into the "sedentary" (24.2%), "lightly active" (27.3%) and "fairly active" (27.3%) categories, indicating the need for interventions or strategies to promote physical activity, particularly among sedentary and lightly active individuals.
 
 ### 5.2 Combining Datasets
@@ -406,6 +401,8 @@ ggplot(user_usage, aes(x=days_usage_percentage, y=hours_usage_percentage)) +
   labs(title = "Days vs Hours Usage", x = "Days Usage", y= "Hours Usage") +
   theme(plot.title = element_text(hjust=0.5))
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232828243-8ce58e3b-5328-4712-bd9f-672912663b46.png"  alt="User Usage" width="350">
+
 A fairly flat line of best fit on a scatter plot suggests that there is little to no correlation between the two variables being plotted, in this case daily and hourly usage. It implies that the daily usage of the fitness smart device does not necessarily determine the hourly usage and vice versa.
 
 This suggests that marketing campaigns could promote not only daily usage of fitness smart devices but also the benefits of incorporating physical activity throughout the day. This could involve activities such as taking the stairs instead of the elevator, going for a walk during lunch breaks, doing stretching exercises at a desk, or standing up and moving around every hour. The aim is to increase overall physical activity levels and promote better health by integrating more movement into everyday activities.
@@ -435,6 +432,8 @@ daily_steps_plot <- ggplot(weekly_active, mapping=aes(x=day_of_week, y=avg_daily
   theme(plot.title = element_text(hjust=0.5))
 print(daily_steps_plot)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232834527-e5156852-a5cb-4e7c-8f52-1717b8d4fa75.png" alt="Daily Steps" width="350">
+
 Based on the "daily_steps_plot" bar graph above, the following conclusions can be drawn:
 
 -   The average daily steps from Sunday to Saturday is below the 10,000 step goal. This is consistent with the previous analysis, which showed that nearly 80% of users fall into the sedentary, lightly, and fairly active categories, all of which have step counts that are below the desired goal.
@@ -460,6 +459,8 @@ hourly_steps_plot <- ggplot(daily_active, mapping=aes(x=time, y=avg_hourly_steps
   theme(plot.title = element_text(size=7,hjust=0.5), axis.text.x = element_text(angle=45, hjust=1))
 print(hourly_steps_plot)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232835548-69e3059c-24ac-4eeb-894d-d65ca6e339d9.png" alt="User Usage" width="350">
+
 Based on the "hourly_steps_plot" bar graph above, the following conclusions can be drawn:
 
 -   Based on the analysis of the average step count on an hourly basis, it is observed that users tend to be more active between 8am to 8pm.
@@ -526,6 +527,8 @@ combined_daily_plots <- ggarrange(very_active_daily_plot, less_active_daily_plot
   draw_label("") 
 print(combined_daily_plots)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232836331-89a027ab-0e3f-4977-94fa-b67824bb6dcb.png" alt="User Usage" width="450">
+
 Based on the "combined_daily_plots" bar graph above, the following conclusions can be drawn:
 
 -   It is quite apparent that users who are less active should increase their physical activity and incorporate additional steps into their daily routine to enhance their well-being. On average, it is recommended that they walk approximately 2,500 more steps per day.
@@ -583,6 +586,8 @@ combined_hourly_plots <- ggarrange(very_active_hourly_plot, less_active_hourly_p
   draw_label("") 
 print(combined_hourly_plots)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232836936-996f19a8-b108-4e12-a409-7ee0b7c5df41.png" alt="User Usage" width="450">
+
 Based on the "combined_hourly_plots" bar graph above, the following conclusions can be drawn:
 
 -   To rectify previous results, "less active" users should increase their step count throughout the day. The difference in averages seems to be close to 200 steps.
@@ -611,6 +616,8 @@ ggplot(asleep_data, mapping=aes(x=day_of_week, y=avg_sleep_hr))+
   scale_y_continuous(breaks = seq(0, 8, by = 1))+ 
   theme(plot.title = element_text(size=10, hjust=0.5), axis.text.x = element_text(hjust=1))
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232837856-91f6392e-6824-4935-9f0a-567707739baf.png" alt="User Usage" width="350">
+
 Based on the bar graph above, the following conclusions can be drawn:
 
 -   Based on the Centers for Disease Control and Prevention (CDC) recommendation of 7 hours or more of sleep per night for adults (source:  [How Much Sleep Do I Need?](https://www.cdc.gov/sleep/about_sleep/how_much_sleep.html)), it appears that the average users in this dataset are getting the recommended amount of sleep, which is 7 hours.
@@ -638,6 +645,8 @@ ggplot(falling_asleep_data, mapping=aes(x=day_of_week, y=avg_falling_sleep)) +
   scale_y_continuous(breaks = seq(0, 1, by = 0.1)) + 
   theme(plot.title = element_text(size=10, hjust=0.5), axis.text.x = element_text(hjust=1))
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232839488-2969e7df-b322-4a44-8638-aca02039e022.png" alt="User Usage" width="350">
+
 Based on the bar graph above, the following conclusions can be drawn:
 
 -   According to the Sleep Foundation study (source:  [How Long Should It Take to Fall Asleep?](https://www.sleepfoundation.org/sleep-faqs/how-long-should-it-take-to-fall-asleep#:~:text=Most%20adults%20with%20healthy%20sleep,sleep%20or%20a%20medical%20condition.html)), it should take an average of 15-20 minutes for an adult to fall asleep on a typical night. However, in this particular case, users are taking an average of 40 minutes (0.66 hours) to fall asleep, which is well beyond the recommended amount.
@@ -694,6 +703,8 @@ combined_sleep_plots <- ggarrange(
   nrow = 2)
 print(combined_sleep_plots)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232842704-891b6927-d9ba-41a4-a658-9b87abffbe7e.png" alt="User Usage" width="450">
+
 ~~~r
 combined_falling_sleep_plots <- ggarrange(
   ggplot(very_active_sleep, mapping=aes(x=day_of_week, y=avg_falling_asleep)) +
@@ -715,6 +726,8 @@ combined_falling_sleep_plots <- ggarrange(
   nrow = 2)
 print(combined_falling_sleep_plots)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232843195-9c57b60d-a6b8-4d83-a0e0-21d2b9c05dc2.png" alt="User Usage" width="450">
+
 After analyzing the above graphs, the following conclusions can be drawn:
 
 -   Surprisingly, not every aspect of the "very active" users' lifestyle is beneficial to their well-being. The results indicate that very active users are consistently getting less than the recommended 7 hours of sleep per night, with an average of 6.13 hours on every day of the week except for Sunday, on which they typically get 8 hours.
@@ -777,6 +790,8 @@ ggplot() +
   theme(plot.title = element_text(size = 10, hjust = 0.5), 
 	  axis.text.x = element_text(angle = 45, hjust = 1))
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232843771-b3efc6fd-12a2-47ed-8ddf-6d76a6b49e2b.png" alt="User Usage" width="450">
+
 After analyzing the above graph, the following conclusions can be drawn:
 
 -   Both "very active" and "less active" users wind down their physical activity as bedtime approaches. However, the difference in steps is very distinct, as "very active" users take 2 to 4 times more steps than "less active" users.
@@ -805,6 +820,8 @@ sleep_corr1<- daily_data %>%
   theme(panel.background = element_blank(), plot.title = element_text(hjust=0.5, size=14))
 print(sleep_corr1)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232845529-c4bccae8-b004-481f-bf28-6b62ea7bcf43.png" alt="User Usage" width="350">
+
 The plot seems to show a positive correlation as the geom_smooth() function, or line of best fit, appears to be on an upward trend. However, the majority of the data points are concentrated within the 0-2 falling asleep hour interval, with a lot of noise outside of this range. Therefore, to confirm this positive correlation assumption, I will plot the same data again, but only with the data points that fall within the 0-2 hours mark.
 ~~~r
 sleep_corr2 <- daily_data %>% 
@@ -819,6 +836,8 @@ sleep_corr2 <- daily_data %>%
   theme(panel.background = element_blank(), plot.title = element_text(hjust=0.5, size=14))
 print(sleep_corr2)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232845841-1531c7b8-ae13-4484-9e30-33dc0041eaaf.png" alt="User Usage" width="350">
+
 Based on the second plot that includes only the data points in the 0-2 hours mark, it appears that there is no clear relationship or correlation between falling asleep duration and sleep time. While the first plot may have showed a positive correlation, it was heavily influenced by a concentration of data points in the 0-2 hours mark and noise outside of this interval, which may have skewed the results. However, by narrowing the focus to only the data points in the 0-2 hours range, it becomes clear that there is no consistent relationship between the two variables.
 
 #### Daily Steps Vs Falling Asleep Duration
@@ -835,6 +854,8 @@ sleep_corr3 <- daily_data %>%
   theme(panel.background = element_blank(), plot.title = element_text(hjust=0.5, size=14))
 print(sleep_corr3)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232846731-c4917aa3-8e8f-4b59-93e5-7f7b7341a3d6.png" alt="User Usage" width="350">
+
 The analysis revealed that there is no correlation between daily step count and the time it takes to fall asleep. Despite not finding a correlation between these two variables, this analysis offers valuable insights and enhances our understanding of the relationship between physical activity and falling asleep.
 
 #### Daily Steps Vs Asleep Duration
@@ -850,6 +871,8 @@ sleep_corr4 <- daily_data %>%
   theme(plot.title = element_text(hjust=0.5, size=14),axis.text.x = element_text(hjust=0.5))
 print(sleep_corr4)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232847273-fab6752a-0395-4184-9f37-2d6c3067797d.png" alt="User Usage" width="350">
+
 Once again I found that there is no significant correlation between daily steps and the duration of sleep. While it may be disappointing not to find a relationship between these two variables, the results are still valuable in understanding the relationship between physical activity and sleep quality. The findings suggest that increasing daily steps may not necessarily lead to improved sleep duration, and other factors may have a more significant impact on the duration of sleep.
 
 #### Intensity Activity Vs Asleep Duration
@@ -873,6 +896,8 @@ sleep_corr5 <- user_avg_sleep %>%
     theme(plot.title = element_text(hjust=0.5, size=14))
 print(sleep_corr5)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232851737-e80e412b-dcb8-4f77-bde0-03974eb77ccb.png" alt="User Usage" width="350">
+
 After conducting the analysis, it appears that there is no correlation between the intensity count and sleep duration. In other words, there is no significant statistical relationship between the number of intensity activities and the amount of sleep a person gets. It is worth noting that while this finding provides valuable insights, it should be acknowledged that having more data would lead to more accurate results.
 
 #### Burned Calories Vs Asleep Duration
@@ -888,6 +913,8 @@ sleep_corr6 <- daily_data %>%
   theme(plot.title = element_text(hjust=0.5, size=14))
 print(sleep_corr6)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232852085-04c13d56-8220-493b-a569-2aa08127b985.png" alt="User Usage" width="350">
+
 The analysis shows that there is no correlation between the calories burned and the duration of sleep. This strengthens the idea that there is no statistical relationship between physical activity and the amount of time a person sleeps.
 
 #### User Activity Category Vs Asleep Duration
@@ -926,6 +953,8 @@ combined_plots_activity <- ggarrange(
   nrow = 2, ncol = 2)
 print(combined_plots_activity)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232852418-f7cad204-a01a-44f7-a1c0-7c53fd2408a8.png" alt="User Usage" width="450">
+
 Based on the results obtained from the scatter plots, it appears that there is no correlation between sleep duration and activity level for the categories of "Very Active", "Fairly Active", and "Lightly Active". However, for the category of "Sedentary", a negative correlation was observed. A negative correlation means that as the activity level decreases, the sleep duration tends to increase. In other words, individuals who are less active tend to have longer sleep durations than those who are more active, which makes sense as sleeping can be considered a sedentary activity.
 
 It's important to note that correlation does not necessarily imply causation. While we can observe a statistical relationship between these variables, it's difficult to determine the exact cause-and-effect relationship between them. Nonetheless, this analysis provides valuable insights into the relationship between activity level and sleep duration, which can inform future research and interventions aimed at improving sleep health.
@@ -944,6 +973,8 @@ cal_corr1 <- daily_data %>%
         axis.text.x = element_text(angle=45, hjust=1))
 print(cal_corr1)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232852802-b168b02f-0ce6-4a37-a056-47922a0bb347.png" alt="User Usage" width="350">
+
 A positive correlation was found between daily step count and calories burned, which means that as the daily step count increases, so does the number of calories burned. This result suggests that walking more, or being more physically active, can have a direct impact on the number of calories burned, which is a critical factor in weight loss and maintaining a healthy lifestyle.
 
 #### Intensity Vs Calories Burned
@@ -959,6 +990,8 @@ cal_corr2 <- hourly_data %>%
         axis.text.x = element_text(hjust=1))
 print(cal_corr2)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232853189-1973a87c-cff3-466b-9b39-d9df2357c134.png" alt="User Usage" width="350">
+
 A positive correlation was found between intensity count and calories burned, which means that as the intensity increases, so does the number of calories burned. This result is not surprising as the intensity of physical activity is one of the primary determinants of the number of calories burned. The higher the intensity, the more energy is required to perform the activity, and the more calories are burned. However, it is important to note that while a positive correlation exists, this does not necessarily mean that causation exists.
 
 ## [<img src="https://cdn-icons-png.flaticon.com/512/9196/9196093.png" alt="intro" width="30" height="30"> 6. Act Phase](#act)
@@ -1008,4 +1041,4 @@ The app cann offer several gamification and promotion features to make physical 
 -   **Offer promotions and referral programs:**  Offer promotions, discounts, or referral programs to incentivize users to purchase and use the devices and app. This can include discounts on purchases, referral bonuses, or other incentives.
 -   **Collect customer feedback and reviews:**  Collecting customer feedback and reviews to continually improve the device and app's features and user experience will helps understand the users' needs and make informed decisions about how to improve all product services provided.
 
-<h2 align="center">Let's make data-driven decisions to achieve fitness goals</h2>
+<h1 align="center">Let's make data-driven decisions to achieve fitness goals</h1>
