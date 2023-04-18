@@ -4,12 +4,19 @@
 <hr style="border: none; height: 3px; background-color: #d2b48c;">
 
 ## Table of Contents 
-[<img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="introduction" width="30" height="30"> 1. Introduction](#introduction) 
+
+[<img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="introduction" width="30" height="30"> 1. Introduction](#introduction)
+
 [<img src="https://cdn-icons-png.flaticon.com/512/3782/3782284.png" alt="ask" width="30" height="30"> 2. Ask Phase](#ask) 
+
 [<img src="https://cdn-icons-png.flaticon.com/512/2644/2644445.png" alt="prepare" width="30" height="30"> 3. Prepare Phase](#prepare) 
-[<img src="https://cdn-icons-png.flaticon.com/512/2974/2974322.png" alt="process" width="30" height="30"> 4. Process Phase](#process) 
+
+[<img src="https://cdn-icons-png.flaticon.com/512/2974/2974322.png" alt="process" width="30" height="30"> 4. Process Phase](#process)
+
 [<img src="https://cdn-icons-png.flaticon.com/512/6471/6471650.png" alt="Analyze" width="30" height="30">  5. Analyze and Share Phase](#analyze--share) 
+
 [<img src="https://cdn-icons-png.flaticon.com/512/9196/9196093.png" alt="act" width="30" height="30"> 6. Act Phase](#act)
+
 <hr style="border: none; height: 3px; background-color: #d2b48c;">
 
 ##  [<img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="intro" width="40" height="40"> 1. Introduction](#introduction) 
@@ -1001,4 +1008,4 @@ The app cann offer several gamification and promotion features to make physical 
 -   **Offer promotions and referral programs:**  Offer promotions, discounts, or referral programs to incentivize users to purchase and use the devices and app. This can include discounts on purchases, referral bonuses, or other incentives.
 -   **Collect customer feedback and reviews:**  Collecting customer feedback and reviews to continually improve the device and app's features and user experience will helps understand the users' needs and make informed decisions about how to improve all product services provided.
 
-<h1 align="center">Let's make data-driven decisions to achieve fitness goals</h1>
+<h2 align="center">Let's make data-driven decisions to achieve fitness goals</h2>
