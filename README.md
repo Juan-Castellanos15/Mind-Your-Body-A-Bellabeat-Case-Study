@@ -4,21 +4,28 @@
 <hr style="border: none; height: 3px; background-color: #d2b48c;">
 
 ## Table of Contents 
-[<img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="introduction" width="30" height="30"> 1. Introduction](#introduction) 
-[<img src="https://cdn-icons-png.flaticon.com/512/3782/3782284.png" alt="ask" width="30" height="30"> 2. Ask Phase](#ask) 
-[<img src="https://cdn-icons-png.flaticon.com/512/2644/2644445.png" alt="prepare" width="30" height="30"> 3. Prepare Phase](#prepare) 
-[<img src="https://cdn-icons-png.flaticon.com/512/2974/2974322.png" alt="process" width="30" height="30"> 4. Process Phase](#process) 
-[<img src="https://cdn-icons-png.flaticon.com/512/6471/6471650.png" alt="Analyze" width="30" height="30">  5. Analyze and Share Phase](#analyze--share) 
-[<img src="https://cdn-icons-png.flaticon.com/512/9196/9196093.png" alt="act" width="30" height="30"> 6. Act Phase](#act)
+
+<img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="introduction" width="30" height="30"> [1. Introduction](#introduction) 
+
+<img src="https://cdn-icons-png.flaticon.com/512/3782/3782284.png" alt="ask" width="30" height="30"> [2. Ask Phase](#ask)
+ 
+<img src="https://cdn-icons-png.flaticon.com/512/2644/2644445.png" alt="prepare" width="30" height="30"> [3. Prepare Phase](#prepare) 
+
+<img src="https://cdn-icons-png.flaticon.com/512/2974/2974322.png" alt="process" width="30" height="30"> [4. Process Phase](#process)
+ 
+<img src="https://cdn-icons-png.flaticon.com/512/6471/6471650.png" alt="analyze--share" width="30" height="30">  [5. Analyze and Share Phase](#analyze--share) 
+
+<img src="https://cdn-icons-png.flaticon.com/512/9196/9196093.png" alt="act" width="30" height="30"> [6. Act Phase](#act)
+
 <hr style="border: none; height: 3px; background-color: #d2b48c;">
 
-##  [<img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="intro" width="40" height="40"> 1. Introduction](#introduction) 
+##  <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="introduction" width="40" height="40"> [1. Introduction](#introduction) 
 
 Bellabeat is a successful high-tech company that specializes in health-focused smart products for women. While the company offers a range of smart devices, **the goal of this analysis was to help Bellabeat develop effective marketing strategies** to promote their fitness tracker app based on the insights obtained from analyzing user data. The analysis focused on the correlation between physical activity and sleep patterns, with additional emphasis on the importance of daily step count and its correlation with calories burned. Based on the insights obtained, marketing strategies were proposed, including personalized recommendations, gamification, emphasizing the benefits of tracking daily step count, promoting weight loss, and highlighting the app's ability to optimize workouts and achieve fitness goals faster. The goal of these strategies is to increase user engagement, drive sales, and promote the app as a tool to help users improve their health and well-being.
 
 According to the co-founder and Chief Creative Officer of Bellabeat, analyzing data from smart devices has the potential to uncover new opportunities for the company's growth. **As a data analyst, I have been assigned the responsibility of conducting an analysis of smart device data to gain insights into consumer usage patterns.** Specifically, for this project, I will be analyzing data from a non-Bellabeat device, the Fitbit.
 
-## [<img src="https://cdn-icons-png.flaticon.com/512/3782/3782284.png" alt="intro" width="40" height="40"> 2. Ask Phase](#ask) 
+## <img src="https://cdn-icons-png.flaticon.com/512/3782/3782284.png" alt="ask" width="40" height="40"> [2. Ask Phase](#ask) 
 
 ### 2.1 Scope of Work
 Before commencing the analysis process, it was crucial to establish a clear scope of work that ensures alignment with business goals, adherence to expected timelines, and production of reliable and actionable results. Consequently, the following deliverables summarize the expected outcomes of this analysis: 
@@ -46,7 +53,7 @@ To ensure a successful outcome in the process of analyzing data and extracting v
 ### 2.4 Product Focused
 As previously stated, the primary product that will be the focus of this analysis is the Bellabeat app. The app offers users health data pertaining to their activity, sleep, stress, menstrual cycle, and mindfulness habits, enabling them to gain a better understanding of their current habits and make informed decisions about their health. </div>
 
-## [<img src="https://cdn-icons-png.flaticon.com/512/2644/2644445.png" alt="intro" width="40" height="40"> 3. Prepare Phase](#prepare) 
+## <img src="https://cdn-icons-png.flaticon.com/512/2644/2644445.png" alt="prepare" width="40" height="40"> [3. Prepare Phase](#prepare) 
 ### 3.1 Data Used
 The "FitBit Fitness Tracker Data" dataset is available on Kaggle under the CC0 Public Domain license, and was made accessible through the user, Mobius. This dataset contains personal fitness tracker data collected from thirty eligible Fitbit users who consented to the submission of minute-level output for physical activity, heart rate, and sleep monitoring. The dataset was generated through a distributed survey via Amazon Mechanical Turk between March 12, 2016 and May 12, 2016.
 
@@ -84,7 +91,7 @@ Moreover, the data is limited in scope, covering only the months from March to M
 
 Additionally, the sample size is biased and does not represent the overall population, although it is still acceptable for the purpose of this case study. Despite these limitations, the data still provides valuable insights into the topic under investigation.
 
-## [<img src="https://cdn-icons-png.flaticon.com/512/2974/2974322.png" alt="intro" width="40" height="40"> 4. Process Phase](#process) 
+## <img src="https://cdn-icons-png.flaticon.com/512/2974/2974322.png" alt="process" width="40" height="40"> [4. Process Phase](#process) 
  This phase is a critical component of data analytics, as it establishes the foundation for subsequent analysis. By ensuring that the data is clean, complete, and consistent, accurate and reliable insights can be achieved to facilitate decision-making.
  
 ###  4.1 Moving Forward Strategy
@@ -293,7 +300,7 @@ missing_values6 <- heart_rate_sec %>%
 missing_values6
 ~~~
 
-## [<img src="https://cdn-icons-png.flaticon.com/512/6471/6471650.png" alt="intro" width="30" height="30">  5. Analyze and Share Phase](#analyze--share) 
+## <img src="https://cdn-icons-png.flaticon.com/512/6471/6471650.png" alt="analyze--share" width="40" height="40">  [5. Analyze and Share Phase](#analyze--share) 
 
 The aim of the analyze phase is to gain a deeper understanding of the data and draw actionable insights that can help Bellabeat make informed decisions based on the data.I will proceed with performing various analyses and modeling techniques on the data in order to extract insights, patterns, and relationships that can inform decision-making. 
 
@@ -356,7 +363,7 @@ ggplot(activity_levels_percentage, mapping=aes(x="", y=percentage, fill=user_typ
   guides(fill = FALSE) +
   labs(title = "User Activity Level Category")
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232825901-04f96b49-05f8-454b-ad69-4d52419c6e40.png" alt="User Activity Level Category" width="450">
+<img src="https://user-images.githubusercontent.com/130716302/232825901-04f96b49-05f8-454b-ad69-4d52419c6e40.png" alt="Activity Category" width="300">
 
 After analyzing the results, it can be concluded that the distribution of users across the various activity level categories is fairly even, with each category representing between 21.2% and 27.3% of the total user population. However, a significant proportion of users fall into the "sedentary" (24.2%), "lightly active" (27.3%) and "fairly active" (27.3%) categories, indicating the need for interventions or strategies to promote physical activity, particularly among sedentary and lightly active individuals.
 
@@ -401,7 +408,7 @@ ggplot(user_usage, aes(x=days_usage_percentage, y=hours_usage_percentage)) +
   labs(title = "Days vs Hours Usage", x = "Days Usage", y= "Hours Usage") +
   theme(plot.title = element_text(hjust=0.5))
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232828243-8ce58e3b-5328-4712-bd9f-672912663b46.png"  alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232828243-8ce58e3b-5328-4712-bd9f-672912663b46.png"  alt="Days vs Hours" width="250">
 
 A fairly flat line of best fit on a scatter plot suggests that there is little to no correlation between the two variables being plotted, in this case daily and hourly usage. It implies that the daily usage of the fitness smart device does not necessarily determine the hourly usage and vice versa.
 
@@ -432,7 +439,7 @@ daily_steps_plot <- ggplot(weekly_active, mapping=aes(x=day_of_week, y=avg_daily
   theme(plot.title = element_text(hjust=0.5))
 print(daily_steps_plot)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232834527-e5156852-a5cb-4e7c-8f52-1717b8d4fa75.png" alt="Daily Steps" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232834527-e5156852-a5cb-4e7c-8f52-1717b8d4fa75.png" alt="Daily Steps" width="250">
 
 Based on the "daily_steps_plot" bar graph above, the following conclusions can be drawn:
 
@@ -459,7 +466,7 @@ hourly_steps_plot <- ggplot(daily_active, mapping=aes(x=time, y=avg_hourly_steps
   theme(plot.title = element_text(size=7,hjust=0.5), axis.text.x = element_text(angle=45, hjust=1))
 print(hourly_steps_plot)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232835548-69e3059c-24ac-4eeb-894d-d65ca6e339d9.png" alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232835548-69e3059c-24ac-4eeb-894d-d65ca6e339d9.png" alt="Hourly Steps" width="250">
 
 Based on the "hourly_steps_plot" bar graph above, the following conclusions can be drawn:
 
@@ -527,7 +534,7 @@ combined_daily_plots <- ggarrange(very_active_daily_plot, less_active_daily_plot
   draw_label("") 
 print(combined_daily_plots)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232836331-89a027ab-0e3f-4977-94fa-b67824bb6dcb.png" alt="User Usage" width="450">
+<img src="https://user-images.githubusercontent.com/130716302/232836331-89a027ab-0e3f-4977-94fa-b67824bb6dcb.png" alt="Daily Steps Comparison" width="350">
 
 Based on the "combined_daily_plots" bar graph above, the following conclusions can be drawn:
 
@@ -586,7 +593,7 @@ combined_hourly_plots <- ggarrange(very_active_hourly_plot, less_active_hourly_p
   draw_label("") 
 print(combined_hourly_plots)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232836936-996f19a8-b108-4e12-a409-7ee0b7c5df41.png" alt="User Usage" width="450">
+<img src="https://user-images.githubusercontent.com/130716302/232836936-996f19a8-b108-4e12-a409-7ee0b7c5df41.png" alt="Hourly Steps Comparison" width="350">
 
 Based on the "combined_hourly_plots" bar graph above, the following conclusions can be drawn:
 
@@ -616,7 +623,7 @@ ggplot(asleep_data, mapping=aes(x=day_of_week, y=avg_sleep_hr))+
   scale_y_continuous(breaks = seq(0, 8, by = 1))+ 
   theme(plot.title = element_text(size=10, hjust=0.5), axis.text.x = element_text(hjust=1))
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232837856-91f6392e-6824-4935-9f0a-567707739baf.png" alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232837856-91f6392e-6824-4935-9f0a-567707739baf.png" alt="Daily Sleep" width="250">
 
 Based on the bar graph above, the following conclusions can be drawn:
 
@@ -645,7 +652,7 @@ ggplot(falling_asleep_data, mapping=aes(x=day_of_week, y=avg_falling_sleep)) +
   scale_y_continuous(breaks = seq(0, 1, by = 0.1)) + 
   theme(plot.title = element_text(size=10, hjust=0.5), axis.text.x = element_text(hjust=1))
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232839488-2969e7df-b322-4a44-8638-aca02039e022.png" alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232839488-2969e7df-b322-4a44-8638-aca02039e022.png" alt="Daily Fall Asleep" width="250">
 
 Based on the bar graph above, the following conclusions can be drawn:
 
@@ -703,7 +710,7 @@ combined_sleep_plots <- ggarrange(
   nrow = 2)
 print(combined_sleep_plots)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232842704-891b6927-d9ba-41a4-a658-9b87abffbe7e.png" alt="User Usage" width="450">
+<img src="https://user-images.githubusercontent.com/130716302/232842704-891b6927-d9ba-41a4-a658-9b87abffbe7e.png" alt="Asleep Comparison" width="350">
 
 ~~~r
 combined_falling_sleep_plots <- ggarrange(
@@ -726,7 +733,7 @@ combined_falling_sleep_plots <- ggarrange(
   nrow = 2)
 print(combined_falling_sleep_plots)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232843195-9c57b60d-a6b8-4d83-a0e0-21d2b9c05dc2.png" alt="User Usage" width="450">
+<img src="https://user-images.githubusercontent.com/130716302/232843195-9c57b60d-a6b8-4d83-a0e0-21d2b9c05dc2.png" alt="Falling Asleep Comparison" width="350">
 
 After analyzing the above graphs, the following conclusions can be drawn:
 
@@ -790,7 +797,7 @@ ggplot() +
   theme(plot.title = element_text(size = 10, hjust = 0.5), 
 	  axis.text.x = element_text(angle = 45, hjust = 1))
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232843771-b3efc6fd-12a2-47ed-8ddf-6d76a6b49e2b.png" alt="User Usage" width="450">
+<img src="https://user-images.githubusercontent.com/130716302/232843771-b3efc6fd-12a2-47ed-8ddf-6d76a6b49e2b.png" alt="Evening Steps" width="300">
 
 After analyzing the above graph, the following conclusions can be drawn:
 
@@ -820,7 +827,7 @@ sleep_corr1<- daily_data %>%
   theme(panel.background = element_blank(), plot.title = element_text(hjust=0.5, size=14))
 print(sleep_corr1)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232845529-c4bccae8-b004-481f-bf28-6b62ea7bcf43.png" alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232845529-c4bccae8-b004-481f-bf28-6b62ea7bcf43.png" alt="Asleep vs Falling Asleep" width="250">
 
 The plot seems to show a positive correlation as the geom_smooth() function, or line of best fit, appears to be on an upward trend. However, the majority of the data points are concentrated within the 0-2 falling asleep hour interval, with a lot of noise outside of this range. Therefore, to confirm this positive correlation assumption, I will plot the same data again, but only with the data points that fall within the 0-2 hours mark.
 ~~~r
@@ -836,7 +843,7 @@ sleep_corr2 <- daily_data %>%
   theme(panel.background = element_blank(), plot.title = element_text(hjust=0.5, size=14))
 print(sleep_corr2)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232845841-1531c7b8-ae13-4484-9e30-33dc0041eaaf.png" alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232845841-1531c7b8-ae13-4484-9e30-33dc0041eaaf.png" alt="Asleep vs Falling Asleep 2" width="250">
 
 Based on the second plot that includes only the data points in the 0-2 hours mark, it appears that there is no clear relationship or correlation between falling asleep duration and sleep time. While the first plot may have showed a positive correlation, it was heavily influenced by a concentration of data points in the 0-2 hours mark and noise outside of this interval, which may have skewed the results. However, by narrowing the focus to only the data points in the 0-2 hours range, it becomes clear that there is no consistent relationship between the two variables.
 
@@ -854,7 +861,7 @@ sleep_corr3 <- daily_data %>%
   theme(panel.background = element_blank(), plot.title = element_text(hjust=0.5, size=14))
 print(sleep_corr3)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232846731-c4917aa3-8e8f-4b59-93e5-7f7b7341a3d6.png" alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232846731-c4917aa3-8e8f-4b59-93e5-7f7b7341a3d6.png" alt="Steps vs Falling Asleep" width="250">
 
 The analysis revealed that there is no correlation between daily step count and the time it takes to fall asleep. Despite not finding a correlation between these two variables, this analysis offers valuable insights and enhances our understanding of the relationship between physical activity and falling asleep.
 
@@ -871,7 +878,7 @@ sleep_corr4 <- daily_data %>%
   theme(plot.title = element_text(hjust=0.5, size=14),axis.text.x = element_text(hjust=0.5))
 print(sleep_corr4)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232847273-fab6752a-0395-4184-9f37-2d6c3067797d.png" alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232847273-fab6752a-0395-4184-9f37-2d6c3067797d.png" alt="Steps vs Sleep" width="250">
 
 Once again I found that there is no significant correlation between daily steps and the duration of sleep. While it may be disappointing not to find a relationship between these two variables, the results are still valuable in understanding the relationship between physical activity and sleep quality. The findings suggest that increasing daily steps may not necessarily lead to improved sleep duration, and other factors may have a more significant impact on the duration of sleep.
 
@@ -896,7 +903,7 @@ sleep_corr5 <- user_avg_sleep %>%
     theme(plot.title = element_text(hjust=0.5, size=14))
 print(sleep_corr5)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232851737-e80e412b-dcb8-4f77-bde0-03974eb77ccb.png" alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232851737-e80e412b-dcb8-4f77-bde0-03974eb77ccb.png" alt="Intensity vs Sleep" width="250">
 
 After conducting the analysis, it appears that there is no correlation between the intensity count and sleep duration. In other words, there is no significant statistical relationship between the number of intensity activities and the amount of sleep a person gets. It is worth noting that while this finding provides valuable insights, it should be acknowledged that having more data would lead to more accurate results.
 
@@ -913,7 +920,7 @@ sleep_corr6 <- daily_data %>%
   theme(plot.title = element_text(hjust=0.5, size=14))
 print(sleep_corr6)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232852085-04c13d56-8220-493b-a569-2aa08127b985.png" alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232864365-7f4f355f-8f83-4f99-a80b-7e9828409bfe.png" alt="User Usage" width="250">
 
 The analysis shows that there is no correlation between the calories burned and the duration of sleep. This strengthens the idea that there is no statistical relationship between physical activity and the amount of time a person sleeps.
 
@@ -953,7 +960,7 @@ combined_plots_activity <- ggarrange(
   nrow = 2, ncol = 2)
 print(combined_plots_activity)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232852418-f7cad204-a01a-44f7-a1c0-7c53fd2408a8.png" alt="User Usage" width="450">
+<img src="https://user-images.githubusercontent.com/130716302/232852418-f7cad204-a01a-44f7-a1c0-7c53fd2408a8.png" alt="Activity Category vs Sleep" width="350">
 
 Based on the results obtained from the scatter plots, it appears that there is no correlation between sleep duration and activity level for the categories of "Very Active", "Fairly Active", and "Lightly Active". However, for the category of "Sedentary", a negative correlation was observed. A negative correlation means that as the activity level decreases, the sleep duration tends to increase. In other words, individuals who are less active tend to have longer sleep durations than those who are more active, which makes sense as sleeping can be considered a sedentary activity.
 
@@ -973,7 +980,7 @@ cal_corr1 <- daily_data %>%
         axis.text.x = element_text(angle=45, hjust=1))
 print(cal_corr1)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232852802-b168b02f-0ce6-4a37-a056-47922a0bb347.png" alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232852802-b168b02f-0ce6-4a37-a056-47922a0bb347.png" alt="Steps vs Calories" width="250">
 
 A positive correlation was found between daily step count and calories burned, which means that as the daily step count increases, so does the number of calories burned. This result suggests that walking more, or being more physically active, can have a direct impact on the number of calories burned, which is a critical factor in weight loss and maintaining a healthy lifestyle.
 
@@ -990,11 +997,11 @@ cal_corr2 <- hourly_data %>%
         axis.text.x = element_text(hjust=1))
 print(cal_corr2)
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232853189-1973a87c-cff3-466b-9b39-d9df2357c134.png" alt="User Usage" width="350">
+<img src="https://user-images.githubusercontent.com/130716302/232853189-1973a87c-cff3-466b-9b39-d9df2357c134.png" alt="Intensity vs Calories" width="250">
 
 A positive correlation was found between intensity count and calories burned, which means that as the intensity increases, so does the number of calories burned. This result is not surprising as the intensity of physical activity is one of the primary determinants of the number of calories burned. The higher the intensity, the more energy is required to perform the activity, and the more calories are burned. However, it is important to note that while a positive correlation exists, this does not necessarily mean that causation exists.
 
-## [<img src="https://cdn-icons-png.flaticon.com/512/9196/9196093.png" alt="intro" width="30" height="30"> 6. Act Phase](#act)
+## <img src="https://cdn-icons-png.flaticon.com/512/9196/9196093.png" alt="act" width="40" height="40"> [6. Act Phase](#act)
 
 Bellabeat has achieved success by catering to the unique health needs of women, identifying a gap in the market for health and wellness products designed specifically for this demographic. The company's products feature innovative technology, stylish devices, and user-friendly apps and interface which combined, monitors activity levels, tracks heartbeat and intensity, and provides all sort of useful data to improve a healthy lifestyle. In addition, Bellabeat has effectively marketed its products through various channels, and by analyzing data such as the analysis we have completed, the company can develop new marketing strategies to build a loyal customer base and establish itself as a leader in the women's health and wellness market.
 
