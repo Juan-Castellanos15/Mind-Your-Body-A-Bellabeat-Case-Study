@@ -325,4 +325,7 @@ user_type <- daily_activity %>%
 head(user_type)
 ~~~
 
+![User Activity Level Category Plot](User Activity Level Category Plot2.png)
+
+
 
