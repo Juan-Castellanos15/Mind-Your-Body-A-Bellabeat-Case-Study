@@ -5,17 +5,17 @@
 
 ## Table of Contents 
 
-[<img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="1. Introduction" width="30" height="30"> 1. Introduction](#1. Introduction)
+[<img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="introduction" width="30" height="30"> 1. Introduction](#introduction)
 
-[<img src="https://cdn-icons-png.flaticon.com/512/3782/3782284.png" alt="2. Ask Phase" width="30" height="30"> 2. Ask Phase](#2. Ask Phase) 
+[<img src="https://cdn-icons-png.flaticon.com/512/3782/3782284.png" alt="ask" width="30" height="30"> 2. Ask Phase](#ask) 
 
-[<img src="https://cdn-icons-png.flaticon.com/512/2644/2644445.png" alt="3. Prepare Phase" width="30" height="30"> 3. Prepare Phase](#3. Prepare Phase) 
+[<img src="https://cdn-icons-png.flaticon.com/512/2644/2644445.png" alt="prepare" width="30" height="30"> 3. Prepare Phase](#prepare) 
 
-[<img src="https://cdn-icons-png.flaticon.com/512/2974/2974322.png" alt="process" width="30" height="30"> 4. Process Phase](#4. Process Phase)
+[<img src="https://cdn-icons-png.flaticon.com/512/2974/2974322.png" alt="process" width="30" height="30"> 4. Process Phase](#process)
 
-[<img src="https://cdn-icons-png.flaticon.com/512/6471/6471650.png" alt="5. Analyze and Share Phase" width="30" height="30">  5. Analyze and Share Phase](#5. Analyze and Share Phase) 
+[<img src="https://cdn-icons-png.flaticon.com/512/6471/6471650.png" alt="Analyze" width="30" height="30">  5. Analyze and Share Phase](#analyze--share) 
 
-[<img src="https://cdn-icons-png.flaticon.com/512/9196/9196093.png" alt="6. Act Phase" width="30" height="30"> 6. Act Phase](#6. Act Phase)
+[<img src="https://cdn-icons-png.flaticon.com/512/9196/9196093.png" alt="act" width="30" height="30"> 6. Act Phase](#act)
 
 <hr style="border: none; height: 3px; background-color: #d2b48c;">
 
