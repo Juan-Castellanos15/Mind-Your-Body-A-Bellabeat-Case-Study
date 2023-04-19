@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://cdn-icons-png.flaticon.com/512/3048/3048398.png" alt="Bellabeat Sleep" width="55" height="55">  Mind Your Body  <img src="https://cdn-icons-png.flaticon.com/512/3048/3048398.png" alt="Bellabeat Sleep" width="55" height="55"></h1>
+<h1 align="center"><sub><sub><sub><img src="https://cdn-icons-png.flaticon.com/512/3048/3048398.png" alt="personalized" width="55" height="55"></sub></sub></sub> Mind Your Body <sub><sub><sub><img src="https://cdn-icons-png.flaticon.com/512/3048/3048398.png" alt="Bellabeat Sleep" width="55" height="55"></sub></sub></sub></h1></h1>  
 
 <h2 align="center">How Bellabeat Helps Users Optimize Physical Activity and Sleep</h2>
 
@@ -256,7 +256,7 @@ dup_entries_count2 <- daily_sleep %>%
   nrow()
 dup_entries_count2
 ~~~
-Based on my previous analysis, I was able to determine that the daily_sleep data frame had three duplicates that need to be removed
+Based on my previous analysis, I was able to determine that the daily_sleep data frame had three duplicates that need to be removed as follow:
 ~~~r
 daily_sleep <- daily_sleep %>%
   distinct() 
@@ -301,6 +301,7 @@ missing_values6 <- heart_rate_sec %>%
   summarize_all(~sum(is.na(.) | . == ""))
 missing_values6
 ~~~
+Based on the results, I can conclude that all datasets used in this analysis were found to be free of any blanks, NAs, or other missing values.
 
 ## <img src="https://cdn-icons-png.flaticon.com/512/6471/6471650.png" alt="analyze--share" width="40" height="40">  [5. Analyze and Share Phase](#analyze--share) 
 
@@ -761,7 +762,7 @@ very_active_heart_rate <- daily_data %>%
   distinct(id)
 very_active_heart_rate
 ~~~
-<img src="https://user-images.githubusercontent.com/130716302/232907368-ec72dc9e-bc12-4b7f-9115-50be2b59bcdc.png" alt="Heat Rate" width="300">
+<img src="https://user-images.githubusercontent.com/130716302/232907368-ec72dc9e-bc12-4b7f-9115-50be2b59bcdc.png" alt="Heat Rate" width="75">
 
 Unfortunately, only one "very active" user recorded their heart rate, which is not a reliable representation of the entire "very active" user population. Therefore, I cannot proceed with further analysis using this dataset and method.
 
@@ -1016,7 +1017,7 @@ Bellabeat has achieved success by catering to the unique health needs of women, 
 
 Based on my analysis, the following marketing strategies are recommended:
 
-### 6.1 Sleep Tracking and Improvement
+### 6.1 Sleep Tracking and Improvement <sub><sub><sub><img src="https://user-images.githubusercontent.com/130716302/232954717-887e97d5-858c-48b0-b9f5-064317b98e74.png" alt="sleep" width="35" height="35"></sub></sub></sub>
 
 Getting a good night's sleep is crucial for maintaining physical health. The following are some ways that our app can help users improve their sleep patterns and quality of sleep:
 
@@ -1024,31 +1025,27 @@ Getting a good night's sleep is crucial for maintaining physical health. The fol
 -   **Provide tips and suggestions for improving sleep habits:**  The app will include a dedicated section that provides tips and suggestions for improving sleep habits. These tips will be categorized by sub-categories to make it easy for users to find what they need.
 -   **Highlight the negative impact of sleep deprivation:**  The app will also highlight the negative impact of sleep deprivation on physical performance and overall health. A recommendations section through the app will provide users with information on the importance of sleep and its impact on cognitive function and physical well-being.
 
-### 6.2 Encourage an Active Lifestyle
-
+### 6.2 Encourage an Active Lifestyle <sub><sub><sub><img src="https://cdn-icons-png.flaticon.com/512/6213/6213604.png" alt="active" width="35" height="35"></sub></sub></sub>
 Regular exercise is essential for maintaining physical and mental health. The following are some ways that the app can help users stay active and achieve their fitness and weight loss goals:
 
 -   **Promote the benefits of physical activity and offer notifications:**  The app will emphasize the benefits of physical activity and encourage users to engage in physical activity throughout the day, while winding down and relaxing as bedtime approaches. The app will send notifications to remind users to move their bodies and stay active.
 -   **Track step count and physical activity levels:**  The app will allow users to track their daily, weekly, and monthly step count and monitor their physical activity levels. Users can set daily or weekly goals for their step count or calories burned, and the app will provide progress updates to help them stay motivated and reach the next activty level, from sedentary to very active.
 -   **Use correlation between daily step count and calories burned to motivate users:**  The app will use the correlation between daily step count and calories burned to motivate users to stay active and achieve their fitness goals. Users can set target step count or calories burned and track their progress through the app. The app will send notifications to users as they reach their goals and celebrate their achievements.
 
-### 6.3 Personalized Recommendations:
-
+### 6.3 Personalized Recommendations: <sub><sub><sub><img src="https://cdn-icons-png.flaticon.com/512/3787/3787966.png" alt="personalized" width="35" height="35"></sub></sub></sub>
 The app can provide users with personalized recommendations and suggestions to help them achieve their fitness and sleep goals. The following are some ways we can achieve this:
 
 -   **Use data from tracking daily step count and calories burned:**  The app will use data collected from tracking daily step count and calories burned to provide personalized recommendations and suggestions to users. These recommendations can be presented in the app's recommendation section and will help users stay motivated and achieve their fitness goals.
 -   **Provide personalized recommendations for effective calorie burning:**  The app will highlight its value in helping users achieve their fitness goals and provide personalized recommendations for the types of physical activities and intensity routines that would be most effective for burning calories. These recommendations will be tailored to each user's fitness level, physical ability, and interests.
 -   **Offer personalized solutions for sleep disorders:**  For people with sleep disorders or those who struggle to fall asleep, the app can offer personalized solutions to improve sleep quality. Users can opt for an additional pay-in feature that will provide customized solutions.
 
-### 6.4 Achieving Fitness Goals:
-
+### 6.4 Achieving Fitness Goals: <sub><sub><sub><img src="https://cdn-icons-png.flaticon.com/512/3475/3475789.png" alt="goals" width="35" height="35"></sub></sub></sub>
 The devices and app have several features that can help users achieve their fitness goals. The following are some ways to emphasize the benefits of the Bellatbeat devices and app:
 
 -   **Measure physical activity intensity and calories burned using advanced algorithms:**  The devices and app use advanced algorithms to measure physical activity, intensity, and calories burned accurately. Users can track their progress and make informed decisions about their fitness goals.
 -   **Target a wide range of users:**  The devices and app have been designed to cater to a broad range of users, including young and elderly women. Emphasis should be placed on the convenience and ease of use of the devices and app to ensure that everyone can use them without difficulty.
 
-### 6.5 Gamification & Promotions:
-
+### 6.5 Gamification & Promotions: <sub><sub><sub><img src="https://cdn-icons-png.flaticon.com/512/5865/5865982.png" alt="games" width="35" height="35"></sub></sub></sub>
 The app cann offer several gamification and promotion features to make physical activity more engaging and motivate users to stay active. The following are some ways to achieve this:
 
 -   **Use gamification to engage users:**  The app can use gamification to make physical activity more engaging and motivate users to stay active. This can include challenges, leaderboards, and other interactive features.
@@ -1057,4 +1054,4 @@ The app cann offer several gamification and promotion features to make physical 
 -   **Offer promotions and referral programs:**  Offer promotions, discounts, or referral programs to incentivize users to purchase and use the devices and app. This can include discounts on purchases, referral bonuses, or other incentives.
 -   **Collect customer feedback and reviews:**  Collecting customer feedback and reviews to continually improve the device and app's features and user experience will helps understand the users' needs and make informed decisions about how to improve all product services provided.
 
-<h2 align="center">Let's make data-driven decisions to achieve fitness goals</h2>
+<h2 align="center">Health is Wealth & Data is Power</h2>
