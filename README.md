@@ -1,5 +1,7 @@
-<h1 align="center"><img src="https://bellabeat.com/wp-content/uploads/2022/10/Leaf-Urban-Rose-Gold-Bellabeat-2.jpg" alt="Bellabeat Sleep" width="45" height="37.5">  Mind Your Body  <img src="https://bellabeat.com/wp-content/uploads/2022/10/Leaf-Urban-Rose-Gold-Bellabeat-2.jpg" alt="Bellabeat Sleep" width="45" height="37.5"></h1> 
+<h1 align="center"><img src="https://cdn-icons-png.flaticon.com/512/3048/3048398.png" alt="Bellabeat Sleep" width="55" height="55">  Mind Your Body  <img src="https://cdn-icons-png.flaticon.com/512/3048/3048398.png" alt="Bellabeat Sleep" width="55" height="55"></h1>
+
 <h2 align="center">How Bellabeat Helps Users Optimize Physical Activity and Sleep</h2>
+
 <div align="center"><img src="https://i.giphy.com/media/26BRq9PYFLeJl3WLu/giphy.webp" alt="Bellabeat Fit" width="270" height="250"> <img src="https://news.mit.edu/sites/default/files/styles/news_article__image_gallery/public/images/202009/MIT-Sleep-Positions-01-ani_0.gif?itok=OyNbfmyA" alt="Bellabeat Sleep" width="270" height="250"></div>
 <hr style="border: none; height: 3px; background-color: #d2b48c;">
 
@@ -331,6 +333,8 @@ user_type <- daily_activity %>%
   arrange(avg_steps)
 head(user_type)
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232902956-930a76c4-8322-4e1c-a6de-849a79892f0c.png" alt="User Activity Level Category" width="300">
+
 The user_type data frame obtained above provides valuable insights regarding the users' step count. Based on this data, the following conclusions can be drawn:
     
 - Some users have negative values when subtracting one standard deviation from their average step count. Typically, these negative values belong to sedentary users, whose average daily step count is very low and whose daily step count is highly dispersed throughout the week, resulting in a high standard deviation. In reality, it's impossible for a user to have negative step counts. Therefore, "sedentary" and "lightly active" users should aim to increase their average daily step count and be more consistent throughout the week to improve their overall health and wellbeing.
@@ -344,8 +348,7 @@ activity_levels_percentage <- user_type %>%
   summarize(count = n()) %>%
   mutate(percentage = percent(count / sum(count)))
 head(activity_levels_percentage)
-~~~
-~~~r
+
 ggplot(activity_levels_percentage, mapping=aes(x="", y=percentage, fill=user_type)) +
   geom_bar(stat="identity") +
   coord_polar(theta = "y") +
@@ -745,6 +748,8 @@ After analyzing the above graphs, the following conclusions can be drawn:
 
 One suggestion that has yet to be fully confirmed is whether evening physical activity has a negative impact on sleep duration and the time it takes to fall asleep. To investigate this hypothesis, two analyses can be conducted: 1) comparing the heart rate of "very active" users with that of "less active" users to notice eveninig typical rest heart rates, and 2) comparing the evening step activity of both groups.
 
+##### Heart Rate Analysis
+
 For my first analysis, I will use the heart_rate_sec dataset to create two dataframes with hourly heart rates for both "very active" and "less active" users. Next, I will generate a line plot to compare and analyze the heart rates of both caterogies. However, before performing a thorough analysis, it is important to keep in mind that this dataset contains only 14 users as previously discussed. Therfore, I will first check how many "very active" and "less active" users recorded their heart rates and determine whether it makes sense to proceed with this analysis.
 ~~~r
 very_active_heart_rate <- daily_data %>%
@@ -756,7 +761,11 @@ very_active_heart_rate <- daily_data %>%
   distinct(id)
 very_active_heart_rate
 ~~~
+<img src="https://user-images.githubusercontent.com/130716302/232907368-ec72dc9e-bc12-4b7f-9115-50be2b59bcdc.png" alt="Heat Rate" width="300">
+
 Unfortunately, only one "very active" user recorded their heart rate, which is not a reliable representation of the entire "very active" user population. Therefore, I cannot proceed with further analysis using this dataset and method.
+
+##### Evening Steps Comparison
 
 I will now proceed with my second analysis, which involves exploring the evening physical activity data to identify patterns that may impact sleep duration or the time taken to fall asleep. According to an article titled "Evening Hours" on the website incorporated.zone (source: [Evening Hours](https://www.incorporated.zone/evening-hours/)), the evening hours are defined as the period from 6pm to 9pm. However, for this analysis, I will be considering the steps activity data from 6pm to 11pm to allow for a broader time window that includes activity beyond 9pm and encompasses more data points.
 
@@ -807,7 +816,7 @@ After analyzing the above graph, the following conclusions can be drawn:
 
 ### 5.7 Correlation Analysis
 
-Falling Asleep Duration Vs Sleep Duration
+#### Falling Asleep Duration Vs Sleep Duration
 
 For the upcoming analysis, I aim to explore the possibility of discovering a correlation between the duration of falling asleep and the amount of time spent sleeping. Identifying a relationship between these two variables can have several practical implications, including:
 
@@ -1048,4 +1057,4 @@ The app cann offer several gamification and promotion features to make physical 
 -   **Offer promotions and referral programs:**  Offer promotions, discounts, or referral programs to incentivize users to purchase and use the devices and app. This can include discounts on purchases, referral bonuses, or other incentives.
 -   **Collect customer feedback and reviews:**  Collecting customer feedback and reviews to continually improve the device and app's features and user experience will helps understand the users' needs and make informed decisions about how to improve all product services provided.
 
-<h1 align="center">Let's make data-driven decisions to achieve fitness goals</h1>
+<h2 align="center">Let's make data-driven decisions to achieve fitness goals</h2>
