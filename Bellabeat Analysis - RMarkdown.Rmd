@@ -1,0 +1,732 @@
+---
+title: "BellaBeat Analysis"
+author: "Juan"
+date: "2023-03-20"
+output: html_document
+---
+
+#1. Install and load libraries
+```{r}
+install.packages("tidyverse")
+install.packages("readr")
+install.packages("dplyr")
+install.packages("lubridate")
+install.packages("hms")
+install.packages("janitor")
+install.packages("ggplot2")
+install.packages("ggpubr")
+install.packages("cowplot")
+install.packages("scales")
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(lubridate)
+library(hms)
+library(janitor)
+library(ggplot2)
+library(ggpubr)
+library(cowplot)
+library(scales)
+```
+
+#2. Upload datasets 
+```{r}
+daily_activity <- read.csv("dailyActivity_merged.csv")
+daily_sleep <- read.csv("sleepDay_merged.csv")
+hourly_calories <- read.csv("hourlyCalories_merged.csv")
+hourly_steps <- read.csv("hourlySteps_merged.csv")
+hourly_intensities <- read.csv("hourlyIntensities_merged.csv")
+heart_rate_sec <- read.csv("heartrate_seconds_merged.csv")
+```
+
+
+#3. Transform column names to a consistent and clean format
+```{r}
+daily_activity <- clean_names(daily_activity)
+daily_sleep <- clean_names(daily_sleep)
+heart_rate_sec <- clean_names(heart_rate_sec)  
+hourly_calories <- clean_names(hourly_calories)
+hourly_steps <- clean_names(hourly_steps)
+hourly_intensities <- clean_names(hourly_intensities)
+```
+
+  
+#4. Ensure that id length is consistent 
+```{r}
+id_length1<- daily_activity %>%
+  group_by(id) %>% 
+  reframe(id_len = nchar(id)) %>% 
+  distinct(id, id_len) 
+id_length1
+
+id_length2<- daily_sleep %>%
+  group_by(id) %>% 
+  reframe(id_len = nchar(id)) %>% 
+  distinct(id, id_len)  
+id_length2
+
+id_length3<- hourly_calories %>%
+  group_by(id) %>% 
+  reframe(id_len = nchar(id)) %>% 
+  distinct(id, id_len)  
+id_length3
+
+id_length4<- hourly_steps %>%
+  group_by(id) %>% 
+  reframe(id_len = nchar(id)) %>% 
+  distinct(id, id_len)  
+id_length4
+
+id_length5<- hourly_intensities %>%
+  group_by(id) %>% 
+  reframe(id_len = nchar(id)) %>% 
+  distinct(id, id_len) 
+id_length5
+
+id_length6<- heart_rate_sec %>%
+  group_by(id) %>% 
+  reframe(id_len = nchar(id)) %>% 
+  distinct(id, id_len)
+id_length6 
+```
+
+#5.1 Change "date" column format to <date> format
+```{r}
+daily_activity <- daily_activity %>% 
+  mutate(activity_date = mdy(activity_date)) %>% 
+  mutate(activity_date = as.Date(activity_date)) %>% 
+  rename(date = activity_date)
+
+daily_sleep <- daily_sleep %>% 
+  mutate(sleep_day = mdy_hms(sleep_day)) %>% 
+  mutate(sleep_day = as.Date(sleep_day)) %>% 
+  rename(date = sleep_day)
+```
+
+#5.2 Transform "date" column into "date" and "time" columns, each with appropiate format
+```{r}
+hourly_calories <- hourly_calories %>% 
+  mutate(activity_hour = mdy_hms(activity_hour)) %>% 
+  separate(activity_hour,into=c("date", "time"), sep=" ") %>% 
+  mutate(date=as.Date(date), time=as_hms(time))
+
+hourly_steps <- hourly_steps %>% 
+  mutate(activity_hour = mdy_hms(activity_hour)) %>% 
+  separate(activity_hour,into=c("date", "time"), sep=" ") %>% 
+  mutate(date=as.Date(date), time=as_hms(time))
+
+hourly_intensities <- hourly_intensities %>% 
+  mutate(activity_hour = mdy_hms(activity_hour)) %>% 
+  separate(activity_hour,into=c("date", "time"), sep=" ") %>% 
+  mutate(date=as.Date(date), time=as_hms(time))
+
+heart_rate_sec <- heart_rate_sec %>% 
+  mutate(time = mdy_hms(time)) %>% 
+  separate(time,into=c("date", "time"), sep=" ") %>% 
+  mutate(date=as.Date(date), time=as_hms(time))
+```
+
+#6.1 Check datasets with a limited number of columns for duplicates
+```{r}
+sum(duplicated(heart_rate_sec))
+
+sum(duplicated(hourly_calories))
+
+sum(duplicated(hourly_intensities))
+
+sum(duplicated(hourly_steps))
+```
+
+#6.2 Check datasets with multiple columns for duplicates
+```{r}
+dup_entries_count1 <- daily_activity %>%
+  mutate(combined = paste(id, as.character(date), sep = "_")) %>%
+  filter(duplicated(combined)) %>% 
+  nrow()
+dup_entries_count1
+ 
+dup_entries_count2 <- daily_sleep %>%
+  mutate(combined = paste(id, as.character(date), sep = "_")) %>%
+  filter(duplicated(combined)) %>% 
+  nrow()
+dup_entries_count2
+```
+
+#6.3 Remove duplicates in the daily_sleep dataset
+```{r}
+daily_sleep <- daily_sleep %>%
+  distinct() 
+
+dup_entries_count3 <- daily_sleep %>%
+  mutate(combined = paste(id, as.character(date), sep = "_")) %>%
+  filter(duplicated(combined)) %>% 
+  nrow()
+dup_entries_count3
+```
+
+#7. Find missing and N.A. values
+```{r}
+missing_values1 <- daily_activity %>%
+  mutate_if(is.Date, as.character) %>% 
+  summarize_all(~sum(is.na(.) | . == ""))
+missing_values1 
+
+missing_values2 <- daily_sleep %>%
+  mutate_if(is.Date, as.character) %>% 
+  summarize_all(~sum(is.na(.) | . == ""))
+missing_values2
+
+missing_values3 <- hourly_calories %>%
+  mutate_if(is.Date, as.character) %>% 
+  summarize_all(~sum(is.na(.) | . == ""))
+missing_values3
+
+missing_values4 <- hourly_steps %>%
+  mutate_if(is.Date, as.character) %>% 
+  summarize_all(~sum(is.na(.) | . == ""))
+missing_values4
+
+missing_values5 <- hourly_intensities %>%
+  mutate_if(is.Date, as.character) %>% 
+  summarize_all(~sum(is.na(.) | . == ""))
+missing_values5
+
+missing_values6 <- heart_rate_sec %>%
+  mutate_if(is.Date, as.character) %>% 
+  summarize_all(~sum(is.na(.) | . == ""))
+missing_values6
+```
+
+#8.1 Categorizing User Activity Level in a dataframe
+```{r}
+user_type <- daily_activity %>% 
+  group_by(id) %>% 
+  summarise(avg_steps=mean(total_steps), sd_steps=sd(total_steps), lower_sd_steps=mean(total_steps)-sd(total_steps)) %>% 
+  mutate(user_type = case_when(
+    avg_steps < 5000 ~ "sedentary",
+    avg_steps >= 5000 & avg_steps < 7500 ~ "lightly active", 
+    avg_steps >= 7500 & avg_steps < 10000 ~ "fairly active", 
+    avg_steps >= 10000 ~ "very active"
+  )) %>% 
+  arrange(avg_steps)
+head(user_type)
+```
+
+#8.2 Plot Activity Levels in a Pie Graph
+```{r}
+activity_levels_percentage <- user_type %>%
+  group_by(user_type) %>%
+  summarize(count = n()) %>%
+  mutate(percentage = percent(count / sum(count)))
+head(activity_levels_percentage)
+
+ggplot(activity_levels_percentage, mapping=aes(x="", y=percentage, fill=user_type)) +
+  geom_bar(stat="identity") +
+  coord_polar(theta = "y") +
+  theme_minimal() +
+  geom_text(aes(label=paste(user_type, "\n", percentage)),
+            position = position_stack(vjust=0.5),
+            show.legend = none, fontface="bold", size=3) +
+  theme(axis.title.x= element_blank(),
+        axis.title.y = element_blank(),
+        panel.border = element_blank(), 
+        panel.grid = element_blank(), 
+        axis.ticks = element_blank(),
+        axis.text.x = element_blank(),
+        plot.title = element_text(hjust = 0.5, size=14, face = "bold"))+
+  guides(fill = FALSE)+
+  labs(title = "User Activity Level Category")
+```
+
+#9 Join tables for in-depth analysis 
+```{r}
+daily_data <- left_join(daily_activity, daily_sleep, by = c("id", "date")) %>% 
+  drop_na()
+
+hourly_data <- hourly_calories %>% 
+  left_join(hourly_steps, by = c("id", "date", "time")) %>% 
+  left_join(hourly_intensities, by = c("id", "date", "time")) %>% 
+  drop_na()
+```
+
+#10.1 Users usage of smart device
+```{r}
+total_days <- daily_data %>% 
+  summarise(total_days = n_distinct(date))
+total_days
+
+user_usage <- daily_data %>%
+  group_by(id) %>% 
+  reframe(days_used = n_distinct(date), hours_used=round((very_active_minutes+
+              fairly_active_minutes+lightly_active_minutes+sedentary_minutes)/60,1)) %>% 
+  mutate(days_usage_percentage=round(days_used/total_days$total_days*100), 
+        hours_usage_percentage=round(hours_used/24*100)) %>% 
+  distinct(id, .keep_all = TRUE)
+head(user_usage)
+```
+
+#10.2 Correlation between days and hours of usage
+```{r}
+ggplot(user_usage, aes(x=days_usage_percentage, y=hours_usage_percentage)) +
+  geom_jitter() +
+  geom_smooth(color = "red") + 
+  labs(title = "Days vs Hours Usage", x = "Days Usage", y= "Hours Usage") +
+  theme(plot.title = element_text(hjust=0.5))
+```
+
+#11.1 Users Daily activity levels
+```{r}
+weekly_active <- daily_data %>% 
+  mutate(day_of_week = wday(date, label= TRUE)) %>% 
+  group_by(day_of_week) %>% 
+  summarise(avg_daily_steps = mean(total_steps))
+head(weekly_active)
+```
+
+#11.2 Users Daily activity levels Plot
+```{r}
+daily_steps_plot <- ggplot(weekly_active, mapping=aes(x=day_of_week, y=avg_daily_steps))+ 
+  geom_bar(stat="identity", fill="#F8766D")+
+  geom_hline(yintercept = mean(weekly_active$avg_daily_steps), color = "black", size=1.2) +
+  annotate("text", x=.95, y=mean(weekly_active$avg_daily_steps), 
+           label=paste0("Avg:", round(mean(weekly_active$avg_daily_steps))), size=3.3, vjust=-0.5) +
+  labs(title="User Steps by Day of Week", x="Day of Week", y= "Average User Steps")+
+  theme(plot.title = element_text(hjust=0.5))
+print(daily_steps_plot)
+```
+
+#12.1 Users Hourly activity
+```{r}
+daily_active <- hourly_data %>% 
+  group_by(time) %>% 
+  summarise(avg_hourly_steps = mean(step_total))
+head(daily_active)
+```
+
+#12.2 Users Hourly activity Plot
+```{r}
+hourly_steps_plot <- ggplot(daily_active, mapping=aes(x=time, y=avg_hourly_steps)) +
+  geom_bar(stat="identity", fill="#619CFF")+
+  geom_hline(yintercept = mean(daily_active$avg_hourly_steps), color = "black", size=1.2) +
+  annotate("text", x=1, y=mean(daily_active$avg_hourly_steps),
+           label=paste0("Avg:", round(mean(daily_active$avg_hourly_steps))), size=3.3, vjust=-0.5, hjust=0.4) +
+  labs(title="", x="", y="") +
+  theme(plot.title = element_text(size=7,hjust=0.5), axis.text.x = element_text(angle=45, hjust=1))
+print(hourly_steps_plot)
+```
+
+#13.1 Daily Step Comparison Dataframes - Very Active vs Less Active
+```{r}
+very_active_daily <- daily_data %>%
+  group_by(id) %>% 
+  summarise(avg_daily_steps = mean(total_steps)) %>%
+  filter(avg_daily_steps > 10000) %>% 
+  select(id) %>%
+  inner_join(daily_data, by = "id") %>% 
+  mutate(day_of_week = wday(date, label= TRUE)) %>% 
+  group_by(day_of_week) %>% 
+  summarise(avg_daily_steps = mean(total_steps))
+View(very_active_daily)
+
+less_active_daily <- daily_data %>%
+  group_by(id) %>% 
+  summarise(avg_daily_steps = mean(total_steps)) %>%
+  filter(avg_daily_steps < 10000) %>% 
+  select(id) %>%
+  inner_join(daily_data, by = "id") %>% 
+  mutate(day_of_week = wday(date, label= TRUE)) %>% 
+  group_by(day_of_week) %>% 
+  summarise(avg_daily_steps = mean(total_steps))
+View(less_active_daily)
+```
+
+#13.2 Daily Step Comparison Plot - Very Active vs Less Active
+```{r}
+very_active_daily_plot <- ggplot(very_active_daily, mapping=aes(x=day_of_week, y=avg_daily_steps))+ 
+  geom_bar(stat="identity", fill="#F8766D")+
+  geom_hline(yintercept = mean(very_active_daily$avg_daily_steps), color = "black", size=1) +
+  annotate("text", x=.95, y=mean(very_active_daily$avg_daily_steps), 
+           label=paste0("Avg:", round(mean(very_active_daily$avg_daily_steps))), size=2.5, vjust=-0.5, hjust=-1) +
+  labs(title="Very Active Daily Average Steps", x="Day of Week", y= "Very Active User Steps")+
+  theme(plot.title = element_text(hjust=0.5, size=6), axis.text.x = element_text(angle=45, hjust=1), 
+        axis.title = element_text(size=8))+
+  ylim(0, 15000)
+
+less_active_daily_plot <- ggplot(less_active_daily, mapping=aes(x=day_of_week, y=avg_daily_steps))+ 
+  geom_bar(stat="identity", fill="#F8766D")+
+  geom_hline(yintercept = mean(less_active_daily$avg_daily_steps), color = "black", size=1) +
+  annotate("text", x=.95, y=mean(less_active_daily$avg_daily_steps), 
+           label=paste0("Avg:", round(mean(less_active_daily$avg_daily_steps))), size=2.5, vjust=-0.5, hjust=-1) +
+  labs(title="Less Active Daily Average Steps", x="Day of Week", y= "Less Active User Steps")+
+  theme(plot.title = element_text(hjust=0.5, size=6), axis.text.x = element_text(angle=45, hjust=1), 
+        axis.title = element_text(size=8)) + 
+  ylim(0, 15000)
+
+combined_daily_plots <- ggarrange(very_active_daily_plot, less_active_daily_plot, ncol = 2) %>% 
+  ggdraw() +
+  draw_label("") 
+print(combined_daily_plots)
+```
+
+#14.1 Hourly Step Comparison Dataframes - Very Active vs Less Active
+```{r}
+very_active_hourly <- daily_data %>%
+  group_by(id) %>% 
+  summarise(avg_daily_steps = mean(total_steps)) %>%
+  filter(avg_daily_steps > 10000) %>% 
+  select(id) %>%
+  inner_join(hourly_data, by = "id") %>% 
+  group_by(time) %>% 
+  summarise(avg_hourly_steps = mean(step_total))
+View(very_active_hourly)
+
+less_active_hourly <- daily_data %>%
+  group_by(id) %>% 
+  summarise(avg_daily_steps = mean(total_steps)) %>%
+  filter(avg_daily_steps < 10000) %>% 
+  select(id) %>%
+  inner_join(hourly_data, by = "id") %>% 
+  group_by(time) %>% 
+  summarise(avg_hourly_steps = mean(step_total))
+View(less_active_hourly)
+```
+
+#14.2 Hourly Step Comparison Plot - Very Active vs Less Active
+```{r}
+very_active_hourly_plot <- ggplot(very_active_hourly, mapping=aes(x=time, y=avg_hourly_steps)) +
+  geom_bar(stat="identity", fill="#619CFF")+
+  geom_hline(yintercept = mean(very_active_hourly$avg_hourly_steps), color = "black", size=1) +
+  annotate("text", x=1, y=mean(very_active_hourly$avg_hourly_steps),
+           label=paste0("Avg:", round(mean(very_active_hourly$avg_hourly_steps))), size=2.5, vjust=-0.5, hjust=0) +
+  labs(title="Very Active Hourly Average Steps", x="Time", y= "Very Active User Steps")+
+    theme(plot.title = element_text(hjust=0.5, size=6), axis.text.x = element_text(angle=45, hjust=1), 
+        axis.title = element_text(size=8)) +
+  scale_y_continuous(limits = c(0, 1400), breaks = seq(0, 1400, by = 200))
+print(very_active_hourly_plot)
+
+less_active_hourly_plot <- ggplot(less_active_hourly, mapping=aes(x=time, y=avg_hourly_steps)) +
+  geom_bar(stat="identity", fill="#619CFF")+
+  geom_hline(yintercept = mean(less_active_hourly$avg_hourly_steps), color = "black", size=1) +
+  annotate("text", x=1, y=mean(less_active_hourly$avg_hourly_steps),
+           label=paste0("Avg:", round(mean(less_active_hourly$avg_hourly_steps))), size=2.5, vjust=-0.5, hjust=0.2) +
+  labs(title="Less Active Hourly Average Steps", x="Time", y= "Less Active User Steps")+
+  theme(plot.title = element_text(hjust=0.5, size=6), axis.text.x = element_text(angle=45, hjust=1), 
+        axis.title = element_text(size=8))+
+  scale_y_continuous(limits = c(0, 1400), breaks = seq(0, 1400, by = 200))
+print(less_active_hourly_plot)
+
+combined_hourly_plots <- ggarrange(very_active_hourly_plot, less_active_hourly_plot, ncol = 2) %>% 
+  ggdraw() +
+  draw_label("") 
+print(combined_hourly_plots)
+```
+
+#15.1 Users Average Sleep Duration Dataframe
+```{r}
+asleep_data <- daily_data %>% 
+  mutate(day_of_week = wday(date, label= TRUE)) %>% 
+  group_by(day_of_week) %>% 
+  summarise(avg_sleep_hr = mean(total_minutes_asleep)/60)
+head(asleep_data)
+```
+
+#15.2 Users Average Sleep Duration Plot
+```{r}
+ggplot(asleep_data, mapping=aes(x=day_of_week, y=avg_sleep_hr))+
+  geom_bar(stat="identity", fill="palegreen4")+
+  geom_hline(yintercept = mean(asleep_data$avg_sleep_hr), color = "black", size=1) +
+  annotate("text", x=1, y=mean(asleep_data$avg_sleep_hr),
+           label=paste0("Avg:", round(mean(asleep_data$avg_sleep_hr))), size=2.5, vjust=-0.5, hjust=-1) +
+  labs(title="Daily Hours of Sleep", x="Day of the Week", y="Asleep Hours")+
+  scale_y_continuous(breaks = seq(0, 8, by = 1))+ 
+  theme(plot.title = element_text(size=10, hjust=0.5), axis.text.x = element_text(hjust=1))
+```
+
+#16.1 Users Average Fall Asleep Duration Dataframe
+```{r}
+falling_asleep_data <- daily_data %>% 
+  mutate(day_of_week = wday(date, label= TRUE)) %>% 
+  group_by(day_of_week) %>% 
+  summarise(avg_falling_sleep = (mean(total_time_in_bed)-mean(total_minutes_asleep))/60)
+head(falling_asleep_data)
+```
+
+#16.2 Users Average Fall Asleep Duration Plot
+```{r}
+ggplot(falling_asleep_data, mapping=aes(x=day_of_week, y=avg_falling_sleep)) +
+  geom_bar(stat="identity", fill="paleturquoise4") +
+  geom_hline(yintercept = mean(falling_asleep_data$avg_falling_sleep), color = "black", size=1) +
+  annotate("text", x=1, y=mean(falling_asleep_data$avg_falling_sleep),
+           label=paste0("Avg:", round(mean(falling_asleep_data$avg_falling_sleep),2), " hr"), size=3, vjust=-0.5, hjust=-1) +
+  labs(title="Daily Hours To Fall Asleep", x="Day of the Week", y="Hours To Fall Asleep") +
+  scale_y_continuous(breaks = seq(0, 1, by = 0.1)) + 
+  theme(plot.title = element_text(size=10, hjust=0.5), axis.text.x = element_text(hjust=1))
+```
+
+#17.1 Very Active & Less Active sleep and Fall Asleep Dataframes
+```{r}
+very_active_sleep <- daily_data %>%
+  group_by(id) %>% 
+  summarise(avg_daily_steps = mean(total_steps)) %>%
+  filter(avg_daily_steps > 10000) %>% 
+  select(id) %>%
+  inner_join(daily_data, by = "id") %>% 
+  mutate(day_of_week = wday(date, label= TRUE)) %>% 
+  group_by(day_of_week) %>% 
+  summarise(avg_sleep_hr = mean(total_minutes_asleep)/60, 
+            avg_falling_asleep = (mean(total_time_in_bed)-mean(total_minutes_asleep))/60)
+View(very_active_sleep)
+
+less_active_sleep <- daily_data %>%
+  group_by(id) %>% 
+  summarise(avg_daily_steps = mean(total_steps)) %>%
+  filter(avg_daily_steps < 10000) %>% 
+  select(id) %>%
+  inner_join(daily_data, by = "id") %>% 
+  mutate(day_of_week = wday(date, label= TRUE)) %>% 
+  group_by(day_of_week) %>% 
+  summarise(avg_sleep_hr = mean(total_minutes_asleep)/60, 
+            avg_falling_asleep = (mean(total_time_in_bed)-mean(total_minutes_asleep))/60)
+View(less_active_sleep)
+```
+
+#17.2 Very Active vs Less Active Sleep Comparison Plot
+```{r}
+combined_sleep_plots <- ggarrange(
+  ggplot(very_active_sleep, mapping=aes(x=day_of_week, y=avg_sleep_hr))+
+    geom_bar(stat="identity", fill="palegreen4")+
+    geom_hline(yintercept = mean(very_active_sleep$avg_sleep_hr), color = "black", size=1) +
+    annotate("text", x=1, y=mean(very_active_sleep$avg_sleep_hr),
+             label=paste0("Avg:", round(mean(very_active_sleep$avg_sleep_hr),2)), size=2.5, vjust=-0.5, hjust=-0.8) +
+    labs(title="Very Active Sleep Hours", x="Day of the Week", y="Asleep Hours")+
+    scale_y_continuous(breaks = seq(0, 8, by = 1))+ 
+    theme(plot.title = element_text(size=10, hjust=0.5), axis.text.x = element_text(hjust=1)),
+  ggplot(less_active_sleep, mapping=aes(x=day_of_week, y=avg_sleep_hr))+
+    geom_bar(stat="identity", fill="palegreen4")+
+    geom_hline(yintercept = mean(less_active_sleep$avg_sleep_hr), color = "black", size=1) +
+    annotate("text", x=1, y=mean(less_active_sleep$avg_sleep_hr),
+             label=paste0("Avg:", round(mean(less_active_sleep$avg_sleep_hr),2)), size=2.5, vjust=-0.5, hjust=0.5) +
+    labs(title="Less Active Sleep Hours", x="Day of the Week", y="Asleep Hours")+
+    scale_y_continuous(breaks = seq(0, 8, by = 1))+ 
+    theme(plot.title = element_text(size=10, hjust=0.5), axis.text.x = element_text(hjust=1)),
+  nrow = 2)
+print(combined_sleep_plots)
+```
+
+#17.3 Very Active vs Less Active Fall Asleep Comparison Plot
+```{r}
+combined_falling_sleep_plots <- ggarrange(
+  ggplot(very_active_sleep, mapping=aes(x=day_of_week, y=avg_falling_asleep)) +
+    geom_bar(stat="identity", fill="paleturquoise4") +
+    geom_hline(yintercept = mean(very_active_sleep$avg_falling_asleep), color = "black", size=1) +
+    annotate("text", x=1, y=mean(very_active_sleep$avg_falling_asleep),
+             label=paste0("Avg:", round(mean(very_active_sleep$avg_falling_asleep),2), " hr"), size=3, vjust=-0.5, hjust=-0.2) +
+    labs(title="Very Active Falling Asleep Hours", x="Day of the Week", y="Hours To Fall Asleep") +
+    scale_y_continuous(breaks = seq(0, 1, by = 0.1)) + 
+    theme(plot.title = element_text(size=10, hjust=0.5), axis.text.x = element_text(hjust=1)),
+  ggplot(less_active_sleep, mapping=aes(x=day_of_week, y=avg_falling_asleep)) +
+    geom_bar(stat="identity", fill="paleturquoise4") +
+    geom_hline(yintercept = mean(less_active_sleep$avg_falling_asleep), color = "black", size=1) +
+    annotate("text", x=1, y=mean(less_active_sleep$avg_falling_asleep),
+             label=paste0("Avg:", round(mean(less_active_sleep$avg_falling_asleep),2), " hr"), size=3, vjust=-0.5, hjust=-1.2) +
+    labs(title="Less Active Falling Asleep Hours", x="Day of the Week", y="Hours To Fall Asleep") +
+    scale_y_continuous(breaks = seq(0, 1, by = 0.1)) + 
+    theme(plot.title = element_text(size=10, hjust=0.5), axis.text.x = element_text(hjust=1)),
+  nrow = 2)
+print(combined_falling_sleep_plots)
+```
+
+#18 Heart Rate Analysis
+```{r}
+very_active_heart_rate <- daily_data %>%
+  group_by(id) %>% 
+  summarise(avg_daily_steps = mean(total_steps)) %>%
+  filter(avg_daily_steps > 10000) %>% 
+  select(id) %>%
+  inner_join(heart_rate_sec, by = "id") %>%
+  distinct(id)
+```
+
+#19.1 Very Active and Less Active Evening Steps Dataframes
+```{r}
+very_active_evening_steps <- daily_data %>%
+  group_by(id) %>% 
+  summarise(avg_daily_steps = mean(total_steps)) %>%
+  filter(avg_daily_steps > 10000) %>% 
+  select(id) %>%
+  inner_join(hourly_data, by = "id") %>% 
+  filter(between(hour(time), 18, 24)) %>% 
+  group_by(time) %>% 
+  summarise(avg_hourly_steps = mean(step_total))
+View(very_active_evening_steps)
+
+less_active_evening_steps <- daily_data %>%
+  group_by(id) %>% 
+  summarise(avg_daily_steps = mean(total_steps)) %>%
+  filter(avg_daily_steps < 10000) %>% 
+  select(id) %>%
+  inner_join(hourly_data, by = "id") %>% 
+  filter(between(hour(time), 18, 24)) %>% 
+  group_by(time) %>% 
+  summarise(avg_hourly_steps = mean(step_total))
+View(less_active_evening_steps)
+```
+
+#19.2 Very Active and Less Active Evening Steps Line Plot
+```{r}
+ggplot() +
+  geom_line(data = very_active_evening_steps, aes(x = time, y = avg_hourly_steps, color = "Very Active")) +
+  geom_line(data = less_active_evening_steps, aes(x = time, y = avg_hourly_steps, color = "Less Active")) +
+  geom_point(data = very_active_evening_steps, aes(x = time, y = avg_hourly_steps), size = 2.5, shape = 21, fill = "#FFFFFF", color = "red") +
+  geom_point(data = less_active_evening_steps, aes(x = time, y = avg_hourly_steps), size = 2.5, shape = 21, fill = "#FFFFFF", color = "blue") +
+  labs(title = "Evening Steps", x = "Time", y = "Average Steps") +
+  scale_color_manual(values = c("Very Active" = "red", "Less Active" = "blue")) +
+  scale_y_continuous(breaks = seq(50, 1400, by = 150)) +
+  theme(plot.title = element_text(size = 10, hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+#20.1 Falling Asleep Vs Sleep Duration Correlation
+```{r}
+sleep_corr1 <- daily_data %>% 
+  mutate(mins_to_fall_asleep = total_time_in_bed - total_minutes_asleep) %>%
+  ggplot(mapping=aes(x=mins_to_fall_asleep/60, y=total_minutes_asleep/60)) +
+  geom_jitter() +
+  geom_smooth(color = "red") + 
+  labs(title = "Hours Asleep vs Hours to Fall Asleep", x = "Hours to Fall Asleep", y= "Hours Asleep") +
+  scale_y_continuous(breaks = seq(0, 14, by = 2)) + 
+  scale_x_continuous(breaks = seq(0, 7, by = 1)) +
+  theme(plot.title = element_text(hjust=0.5, size=14))
+print(sleep_corr1)
+```
+
+#20.2 Falling Asleep Vs Sleep Duration Correlation (2 hours Time frame)
+```{r}
+sleep_corr2 <- daily_data %>% 
+  mutate(mins_to_fall_asleep = total_time_in_bed - total_minutes_asleep) %>%
+  filter(mins_to_fall_asleep < 60*2) %>% 
+  ggplot(mapping=aes(x=mins_to_fall_asleep/60, y=total_minutes_asleep/60)) +
+  geom_jitter() +
+  geom_smooth(color = "red") + 
+  labs(title = "Hours Asleep vs Hours to Fall Asleep", x = "Hours to Fall Asleep", y= "Hours Asleep") +
+  scale_y_continuous(breaks = seq(0, 14, by = 2)) + 
+  scale_x_continuous(breaks = seq(0, 7, by = 1)) +
+  theme(plot.title = element_text(hjust=0.5, size=14))
+print(sleep_corr2)
+```
+
+#21 Daily Steps vs Falling Asleep Correlation
+```{r}
+sleep_corr3 <- daily_data %>% 
+  mutate(mins_to_fall_asleep = total_time_in_bed - total_minutes_asleep) %>%
+  ggplot(mapping=aes(x=total_steps, y=mins_to_fall_asleep/60)) +
+  geom_jitter() +
+  geom_smooth(color = "red") + 
+  labs(title = "Daily Steps vs Duration to Fall Asleep", x = "Daily Steps", y= "Duration to Fall Asleep") +
+  scale_y_continuous(breaks = seq(0, 14, by = 2)) + 
+  theme(plot.title = element_text(hjust=0.5, size=14))
+print(sleep_corr3)
+
+#22 Daily Steps Vs Asleep Duration Correlation
+sleep_corr4 <- daily_data %>% 
+  ggplot(mapping=aes(x=total_steps, y=total_minutes_asleep/60)) +
+  geom_jitter() +
+  geom_smooth(color = "red") + 
+  labs(title = "Sleep Hours vs Total Steps", x = "Daily Steps", y= "Daily Asleep Hours") +
+  scale_y_continuous(breaks = seq(0, 16, by = 2)) + 
+  theme(plot.title = element_text(hjust=0.5, size=14),axis.text.x = element_text(hjust=0.5))
+print(sleep_corr4)
+```
+
+#23 Intensity Activity Vs Asleep Duration Correlation
+```{r}
+user_avg_sleep <- daily_data %>% 
+  group_by(id) %>% 
+  summarise(avg_daily_asleep = mean(total_minutes_asleep/60))
+
+user_avg_intensity <- hourly_data %>% 
+  group_by(id) %>% 
+  summarise(avg_daily_intensity = mean(total_intensity))
+
+sleep_corr5 <- user_avg_sleep %>% 
+  left_join(user_avg_intensity, by = c("id")) %>% 
+  ggplot(mapping=aes(x=avg_daily_intensity, y=avg_daily_asleep)) +   
+  geom_jitter() +
+  geom_smooth(color = "red") + 
+  labs(title = "Intensity vs Sleep", x = "Daily Average Itensity", y= "Daily Average Sleep") +
+  theme(plot.title = element_text(hjust=0.5, size=14))
+print(sleep_corr5)
+```
+
+#24 Burned Calories Vs Asleep Duration Correlation
+```{r}
+sleep_corr6 <- daily_data %>% 
+  ggplot(mapping=aes(x=calories, y=total_minutes_asleep/60)) +
+  geom_jitter() +
+  geom_smooth(color = "red") + 
+  labs(title = "Calories Burned vs Sleep Hours", x = "Calories Burned", y= "Daily Asleep Hours") +
+  scale_y_continuous(breaks = seq(0,16, by = 2)) + 
+  theme(plot.title = element_text(hjust=0.5, size=14))
+print(sleep_corr6)
+```
+
+#25 User Activity Categories Vs Asleep Duration Correlations
+```{r}
+combined_plots_activity <- ggarrange(
+  ggplot(daily_data, mapping=aes(x=very_active_minutes/60, y=total_minutes_asleep/60))+   
+    geom_jitter() +
+    geom_smooth(color = "red") + 
+    labs(title = "Very Active vs Sleep", x = "Very Active Hours", y= "Sleep Hours") +
+    theme(plot.title=element_text(hjust=0.5, size=11, face="bold"), 
+          axis.title.x=element_text(size=9), axis.title.y=element_text(size=9),
+          axis.text.x=element_text(size=6), axis.text.y=element_text(size=6)),
+  ggplot(daily_data, mapping=aes(x=fairly_active_minutes/60, y=total_minutes_asleep/60))+   
+    geom_jitter() +
+    geom_smooth(color = "red") + 
+    labs(title = "Fairly Active vs Sleep", x = "Fairly Active Hours", y= "") +
+    theme(plot.title = element_text(hjust=0.5, size=11, face="bold"), 
+          axis.title.x=element_text(size=9), axis.title.y=element_text(size=9),
+          axis.text.x=element_text(size=6), axis.text.y=element_text(size=6)),
+  ggplot(daily_data, mapping=aes(x=lightly_active_minutes/60, y=total_minutes_asleep/60))+   
+    geom_jitter() +
+    geom_smooth(color = "red") + 
+    labs(title = "Lightly Active vs Sleep", x = "Lightly Active Hours", y= "Sleep Hours") +
+    theme(plot.title = element_text(hjust=0.5, size=11, face="bold"), 
+          axis.title.x=element_text(size=9), axis.title.y=element_text(size=9),
+          axis.text.x=element_text(size=6), axis.text.y=element_text(size=6)),
+  ggplot(daily_data, mapping=aes(x=sedentary_minutes/60, y=total_minutes_asleep/60))+   
+    geom_jitter() +
+    geom_smooth(color = "red") + 
+    labs(title = "Sedentary vs Sleep", x = "Sedentary Hours", y= "") +
+    theme(plot.title = element_text(hjust=0.5, size=11, face="bold"), 
+          axis.title.x=element_text(size=9), axis.title.y=element_text(size=9),
+          axis.text.x=element_text(size=6), axis.text.y=element_text(size=6)),
+  nrow = 2, ncol = 2)
+print(combined_plots_activity)
+```
+
+#26 Daily Steps Vs Calories Burned Correlation
+```{r}
+cal_corr1 <- daily_data %>% 
+  ggplot(mapping=aes(x=total_steps, y=calories)) +
+  geom_jitter() +
+  geom_smooth(color = "red") + 
+  labs(title = "Daily Steps vs Calories", x = "Daily Steps", y= "Calories Burned")+
+  scale_x_continuous(breaks = seq(0, 25000, by = 3000)) + 
+  theme(plot.title = element_text(hjust=0.5, size=14),
+        axis.text.x = element_text(angle=45, hjust=1))
+print(cal_corr1)
+```
+
+#27 Intensity Vs Calories Burned Correlation
+```{r}
+cal_corr2 <- hourly_data %>% 
+  ggplot(mapping=aes(x=average_intensity, y=calories)) +
+  geom_jitter() +
+  geom_smooth(color = "red") + 
+  labs(title = "Intensity vs Calories", x = "Hourly Average Itensity", y= "Hourly Calories Burned") +
+  theme(plot.title = element_text(hjust=0.5, size=14),
+        axis.text.x = element_text(hjust=1))
+print(cal_corr2)
+```
+
+
